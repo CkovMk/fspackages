@@ -645,7 +645,11 @@ class Altimeter extends HTMLElement {
                     this.baroText.textContent = fastToFixed(parseFloat(newValue) * 33.8639, 0) + "HPA";
                     //this.baroText.textContent = (parseFloat(newValue) * 33.8639).toFixed(0) + "HPA";
                 } else {
-                    this.baroText.textContent = fastToFixed(parseFloat(newValue), 2) + "IN";
+                    var rawBaro = fastToFixed(parseFloat(newValue), 2);
+                    if (rawBaro.indexOf(".") == -1) {
+                        rawBaro = rawBaro + ".00";
+                    }
+                    this.baroText.textContent = rawBaro + "IN";
                     //this.baroText.textContent = parseFloat(newValue).toFixed(2) + "IN";
                 }
                 break;
